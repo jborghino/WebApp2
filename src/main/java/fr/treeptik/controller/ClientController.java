@@ -1,8 +1,10 @@
 package fr.treeptik.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
-import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -30,14 +32,28 @@ public class ClientController {
 	public ModelAndView initFormulaire(Client client) throws ServiceException {
 		ModelAndView modelAndView = new ModelAndView("client");
 		
+		//Solution 1 : Avec le actionName
+//		String actionName ="";
+		
+//		Solution 2 : avec le boolean
+		Boolean isUpdate = false;
+		
 		if(client.getId() == null){
 			client = new Client();
+//			actionName = "Création d'un nouveau client";
 		} else {
 			client = clientService.findOneClient(client);
+//			actionName = "Mise à jour du client " + client.getNom();
+			isUpdate = true;
 		}
 		
+		Map<String, Object> map = new HashMap<>();
+		map.put("cl", client);
+//		map.put("actionName", actionName);
+		map.put("isUpdate", isUpdate);
 		
-		modelAndView.addObject("cl", client);
+		modelAndView.addAllObjects(map);
+		
 		return modelAndView;
 	}
 

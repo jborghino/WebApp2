@@ -51,6 +51,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
+			
+<!-- 			Solution 1 -->
+<%-- 			${actionName } --%>
+
+<!-- 				Solution 2 -->
+			<c:if test="${isUpdate == false}">
+				Création d'un nouveau client
+			</c:if>
+			
+			<c:if test="${isUpdate == true}">
+				Mise à jour du client ${cl.nom }
+			</c:if>
+			
 				<form:form action="save.do" commandName="cl" method="POST"
 					cssClass="form-horizontal">
 

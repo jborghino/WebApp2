@@ -2,6 +2,8 @@ package fr.treeptik.service.impl;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	@Transactional
+	@RolesAllowed(value = { "ROLE_ADMIN" })
 	public Client save(Client client) throws ServiceException {
 
 		try {

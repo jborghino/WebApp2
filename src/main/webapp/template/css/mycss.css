@@ -20,3 +20,7 @@ i {
 	width: 175px;
 	height: 175x;
 }
+
+#logout{
+	text-align:right;
+}
